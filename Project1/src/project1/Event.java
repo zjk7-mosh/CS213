@@ -12,7 +12,7 @@ public class Event implements Comparable<Event> {
     private Contact contact; //include the department name and email
     private int duration; //in minutes
 
-    /** //bs: ADD Javadoc comments. */
+    /** //bs: ADD Javadoc comments.. */
     public Event(Date date, Timeslot startTime, Location location, Contact contact, int duration) {
             this.date = date;
             this.startTime = startTime;
