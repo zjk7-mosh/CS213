@@ -14,7 +14,7 @@ public class Event implements Comparable<Event> {
     private int duration; //in minutes
 
     /** FIXME: add javadoc comments */
-    public Event(Date date, Timeslot startTime, Location location, Contact contact, int duration) {
+    public Event(Date date, Timeslot startTime, Location location, Contact contact, int duration) { // Good
         this.date = date;
         this.startTime = startTime;
         this.location = location;
@@ -28,7 +28,10 @@ public class Event implements Comparable<Event> {
     @Override
     public boolean equals(Object obj) {
         //returns true if two dates, timeslots and locations are equal
-        return super.equals(obj);
+        if (obj instanceof Event){
+            return this.date == ((Event) obj).date && this.startTime == ((Event) obj).startTime && this.location == ((Event) obj).location;
+        }
+        return false;
     }
 
     //FIXME: INCOMPLETE PLACEHOLDER | override of toString() method
@@ -52,8 +55,21 @@ public class Event implements Comparable<Event> {
     @Override
     public int compareTo(Event o) {
         //compares the dates first, then the timeslots if the dates are the same
-        return 0;
+        if(this.date.equals(o.date)){
+            if(this.startTime.equals(o.startTime)){
+                return 0;
+            } else if (this.startTime.compareTo(o.startTime) == 1) {
+                return 1;
+            } else {
+                return -1 ;
+            }
+        } else if (this.date.compareTo(o.date) == 1) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
+
 
 
     /** FIXME: add javadoc comments */
@@ -61,7 +77,8 @@ public class Event implements Comparable<Event> {
         System.out.println("\n--Testing Event.java class--");
 
         Date dateZero = new Date();
-        System.out.println("dateZero:\t\t\t" + dateZero.toString());
+        Date today = Date.today();
+        System.out.println("today:\t\t\t" + today.toString());
 
         //FIXME: Timeslot is an enum class and cannot be instantiated
         //Timeslot time = MORNING;      //So how do I use it???
@@ -70,14 +87,14 @@ public class Event implements Comparable<Event> {
         //FIXME: Location is an enum class and cannot be instantiated
         //Location location = new Location();
 
-        Contact contactFelipe = new Contact(Department.CS, "Felipe@rutgers.edu");
-        System.out.println("defaultContact:\t\t" + contactFelipe.toString());
+        Contact cs = new Contact(Department.CS, "cs@rutgers.edu");
+        System.out.println("defaultContact:\t\t" + cs.toString());
 
         int defaultDuration = 60;
         System.out.println("defaultDuration:\t" + defaultDuration);
 
         System.out.println();
-        Event event1 =  new Event(dateZero, Timeslot.MORNING, Location.ARC103, contactFelipe, defaultDuration);
+        Event event1 =  new Event(today, Timeslot.MORNING, Location.ARC103, cs, defaultDuration);
         System.out.println(event1.toString());
 
         System.out.println("\n--Test Complete--");

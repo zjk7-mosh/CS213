@@ -72,7 +72,7 @@ public class Date implements Comparable<Date> {
         int todayMonth = Integer.parseInt(todayString.substring(5,7));
         int todayDay = Integer.parseInt(todayString.substring(8));
         int todayYear = Integer.parseInt(todayString.substring(0,4));
-        return new Date(todayDay, todayMonth, todayYear);
+        return new Date(todayMonth, todayDay, todayYear);
     }
 
     /** Return the textual representation of a fitness.student.Date object. ...*/

@@ -20,6 +20,10 @@ public enum Department {
         this.fullname = fullname;
     }
 
+    public String getFullname(){
+        return this.fullname;
+    }
+
     //FIXME: REMOVE THIS MAIN METHOD BEFORE SUBMIT
     //Are you sure we have to remove it?
     //I thought all class file need to have their own "testbed" main driver method?
