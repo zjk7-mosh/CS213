@@ -1,11 +1,17 @@
 package project1;
+//FIXME: remove unused imports before submitting
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.Calendar;
+import java.text.DecimalFormat;
+
 /** A class that represents the Date abstract data type with year, month, and day. ...*/
 public class Date implements Comparable<Date> {
     private int year;
     private int month;
     private int day;
 
-    /** Check if this date object is a valid calendar date. ...*/
+    /** Checks if this date object is a valid calendar date. ...*/
     public boolean isValid() {
         //check if the date is a valid calendar date
         return true;
