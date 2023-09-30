@@ -42,8 +42,8 @@ public class Event implements Comparable<Event> {
         //returns a textual representation of an event in the following format:
         //"[Event Date: 10/21/2023] [Start: 2:00pm] [End: 3:00pm] @HLL114 (Hill Center, Busch) [Contact: Computer Science, cs@rutgers.edu]"
         String dateString = "[Event Date: " + date.getMonth() + "/" + date.getDay() + "/" + date.getYear() + "]";
-        String timeString = "[Start: " + startTime + "]" + " [End: " + startTime + duration + "]";
-        String locationString = "@" + location + " (" + Location.MU302 + ")";
+        String timeString = "[Start: " + startTime.getStartingTime() + "]" + " [End: " + startTime.getStartingTime() + duration + "]";
+        String locationString = "@" + location + " (" + location.getCampus() + ")";
         String contactString = "[" + contact.toString() + "]";
 
         return dateString + " " + timeString + " " + locationString + " " + contactString;
@@ -94,7 +94,7 @@ public class Event implements Comparable<Event> {
         System.out.println("defaultDuration:\t" + defaultDuration);
 
         System.out.println();
-        Event event1 =  new Event(today, Timeslot.MORNING, Location.ARC103, cs, defaultDuration);
+        Event event1 =  new Event(today, Timeslot.MORNING, Location.HLL114, cs, defaultDuration);
         System.out.println(event1.toString());
 
         System.out.println("\n--Test Complete--");

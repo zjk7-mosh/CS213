@@ -36,7 +36,7 @@ public class Contact {
 
     @Override
     public String toString(){ // Good
-        return "Contact: " + department + ", " + email;
+        return "Contact: " + department.getFullName() + ", " + email;
     }
 
     public static void main(String[] args){
@@ -46,6 +46,8 @@ public class Contact {
         Contact cs = new Contact(Department.CS, "cs@rutgers.edu");
         Contact math = new Contact(Department.MATH, "math@rutgers.edu");
         Contact ee = new Contact(Department.EE, "ee@rutgers.edu");
+        Contact bait = new Contact(Department.BAIT, "bait@rutgers.edu");
+        Contact iti = new Contact(Department.ITI, "iti@rutgers.edu");
 
         System.out.println("Test isValid():\t\t" + defaultContact.isValid());
         System.out.println("Test toString():\t" + defaultContact.toString());
@@ -58,6 +60,12 @@ public class Contact {
 
         System.out.println("Test isValid():\t\t" + ee.isValid());
         System.out.println("Test toString():\t" + ee.toString());
+
+        System.out.println("Test isValid():\t\t" + bait.isValid());
+        System.out.println("Test toString():\t" + bait.toString());
+
+        System.out.println("Test isValid():\t\t" + iti.isValid());
+        System.out.println("Test toString():\t" + iti.toString());
 
         System.out.println("--Test Complete--");
     }

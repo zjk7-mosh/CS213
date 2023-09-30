@@ -9,19 +9,19 @@ import java.text.DecimalFormat;
     //see 2_OOP.pdf pg. 20 for Enum example adn notes
 /** FIXME: add javadoc comments */
 public enum Department {
-    CS("computer science"),
-    EE ("electrical engineering"),
-    ITI ("information technology and informatics"),
-    MATH ("mathematics"),
-    BAIT ("business analytics and information technology");
-    private final String fullname;
+    CS("Computer Science"),
+    EE ("Electrical Engineering"),
+    ITI ("Information Technology and Informatics"),
+    MATH ("Mathematics"),
+    BAIT ("Business Analytics and Information Technology");
+    private final String fullName;
 
-    Department (String fullname) {
-        this.fullname = fullname;
+    Department (String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getFullname(){
-        return this.fullname;
+    public String getFullName(){
+        return this.fullName;
     }
 
     //FIXME: REMOVE THIS MAIN METHOD BEFORE SUBMIT
@@ -34,10 +34,10 @@ public enum Department {
         System.out.println("Department: " + Department.MATH);
         System.out.println("Department: " + Department.BAIT);
 
-        System.out.println("Department: " + Department.CS.fullname);
-        System.out.println("Department: " + Department.EE.fullname);
-        System.out.println("Department: " + Department.ITI.fullname);
-        System.out.println("Department: " + Department.MATH.fullname);
-        System.out.println("Department: " + Department.BAIT.fullname);
+        System.out.println("Department: " + Department.CS.fullName);
+        System.out.println("Department: " + Department.EE.fullName);
+        System.out.println("Department: " + Department.ITI.fullName);
+        System.out.println("Department: " + Department.MATH.fullName);
+        System.out.println("Department: " + Department.BAIT.fullName);
     }
 }

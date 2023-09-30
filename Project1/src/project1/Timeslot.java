@@ -16,6 +16,10 @@ public enum Timeslot {
     private int hour;
     private int minutes;
 
+    public String getStartingTime(){
+        return this.startingTime;
+    }
+
     Timeslot (String startingTime) {
         //startingTime = startingTime.toUpperCase();
         this.startingTime = startingTime;

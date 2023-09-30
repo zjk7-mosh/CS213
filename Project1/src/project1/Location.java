@@ -15,6 +15,9 @@ public enum Location {
     MU302("Murray Hall, College Avenue");
     private final String campus;
 
+    public String getCampus(){
+        return campus;
+    }
     Location(String campus) {
         this.campus = campus;
     }
