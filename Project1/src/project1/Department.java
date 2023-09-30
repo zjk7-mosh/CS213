@@ -21,11 +21,19 @@ public enum Department {
     }
 
     //FIXME: REMOVE THIS MAIN METHOD BEFORE SUBMIT
+    //Are you sure we have to remove it?
+    //I thought all class file need to have their own "testbed" main driver method?
     public static void main(String[] args) {
         System.out.println("Department: " + Department.CS);
         System.out.println("Department: " + Department.EE);
         System.out.println("Department: " + Department.ITI);
         System.out.println("Department: " + Department.MATH);
         System.out.println("Department: " + Department.BAIT);
+
+        System.out.println("Department: " + Department.CS.fullname);
+        System.out.println("Department: " + Department.EE.fullname);
+        System.out.println("Department: " + Department.ITI.fullname);
+        System.out.println("Department: " + Department.MATH.fullname);
+        System.out.println("Department: " + Department.BAIT.fullname);
     }
 }
