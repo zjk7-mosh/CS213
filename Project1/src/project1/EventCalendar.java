@@ -20,8 +20,12 @@ public class EventCalendar {
     //FIXME: incomplete method, must write body
     private int find(Event event) {
         //search an event in the list
-
-        return 0;
+        for(int i = 0; i < numEvents; i++){
+            if(events[i].equals(event)){
+                return i;
+            }
+        }
+        return -1;
     }
     /** FIXME: add javadoc comments */
     //FIXME: incomplete method, must write body
@@ -53,9 +57,18 @@ public class EventCalendar {
 
     /** FIXME: add javadoc comments */
     //FIXME: incomplete method, must write body
+    //FIXME: UNTESTED, but I think it should be working fine.
+    //FIXME: The idea for removing an event from any location is to set it equal to the next event instead,
+    //FIXME: and go down the array setting each event equal to the next until we hit null
     public boolean remove(Event event) {
         //remove an event from the list
-
+        int found = find(event);
+        if(found != -1){
+            for(int i = found; i < numEvents; i++){
+                this.events[i] = events[i + 1];
+            }
+            numEvents -= 1;
+        }
         return true;
     }
 
