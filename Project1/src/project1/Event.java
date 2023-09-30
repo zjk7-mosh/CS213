@@ -13,6 +13,14 @@ public class Event implements Comparable<Event> {
     private Contact contact; //include the department name and email
     private int duration; //in minutes
 
+    public Event(){
+        this.date = new Date();
+        this.startTime = Timeslot.MORNING;
+        this.location = Location.ARC103;
+        this.contact = new Contact();
+        this.duration = 60;
+    }
+
     /** FIXME: add javadoc comments */
     public Event(Date date, Timeslot startTime, Location location, Contact contact, int duration) { // Good
         this.date = date;
@@ -42,7 +50,11 @@ public class Event implements Comparable<Event> {
         //returns a textual representation of an event in the following format:
         //"[Event Date: 10/21/2023] [Start: 2:00pm] [End: 3:00pm] @HLL114 (Hill Center, Busch) [Contact: Computer Science, cs@rutgers.edu]"
         String dateString = "[Event Date: " + date.getMonth() + "/" + date.getDay() + "/" + date.getYear() + "]";
-        String timeString = "[Start: " + startTime.getStartingTime() + "]" + " [End: " + startTime.getStartingTime() + duration + "]";
+
+        //FIXME: End time needs to properly add the duration to starting time
+        String timeString = "[Start: " + startTime.getStartingTime() + "]" + " [End: " + startTime.getStartingTime() + " + " + duration + "]";
+
+
         String locationString = "@" + location + " (" + location.getCampus() + ")";
         String contactString = "[" + contact.toString() + "]";
 
@@ -78,7 +90,7 @@ public class Event implements Comparable<Event> {
 
         Date dateZero = new Date();
         Date today = Date.today();
-        System.out.println("today:\t\t\t" + today.toString());
+        System.out.println("today:\t\t\t\t" + today.toString());
 
         //FIXME: Timeslot is an enum class and cannot be instantiated
         //Timeslot time = MORNING;      //So how do I use it???
