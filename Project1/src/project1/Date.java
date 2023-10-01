@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.Calendar;
 import java.text.DecimalFormat;
-import java.time.LocalDate;
+//removed LocalDate import
 
 /** A class that represents the Date abstract data type with year, month, and day. ...*/
 public class Date implements Comparable<Date> {
@@ -67,15 +67,25 @@ public class Date implements Comparable<Date> {
     }
 
     /** Return today's date. ...*/
-    public static Date today() { //Good
-        String todayString = LocalDate.now().toString(); // in format yyyy-mm-dd
+    public static Date today() {
+        //FIXME: had to replace LocalDate with Calendar, check that output is correct
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH) + 1; // Calendar.MONTH is 0-based
+        int year = calendar.get(Calendar.YEAR);
+        return new Date(month, day, year);
+        /*
+        String todayString = year + "-" + month + "-" + day;
+            //rm: String todayString = LocalDate.now().toString(); // in format yyyy-mm-dd
         int todayMonth = Integer.parseInt(todayString.substring(5,7));
         int todayDay = Integer.parseInt(todayString.substring(8));
         int todayYear = Integer.parseInt(todayString.substring(0,4));
         return new Date(todayMonth, todayDay, todayYear);
+        */
+
     }
 
-    /** Return the textual representation of a fitness.student.Date object. ...*/
+    /** Return the textual representation of a Date object. ...*/
     @Override
     public String toString() { //Good
         return month + "/" + day + "/" + year;
@@ -125,7 +135,7 @@ public class Date implements Comparable<Date> {
         System.out.println("Test getYear():\t\t" + someday.getYear());             // COMPLETE
         System.out.println("Test equals():\t\t" + someday.equals(someday));          // COMPLETE
 
-        String todayString = LocalDate.now().toString(); // in format yyyy-mm-dd
+        String todayString = Date.today().toString(); // in format yyyy-mm-dd
         System.out.println(todayString);
         System.out.println();
 

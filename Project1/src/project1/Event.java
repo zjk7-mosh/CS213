@@ -61,6 +61,11 @@ public class Event implements Comparable<Event> {
         return dateString + " " + timeString + " " + locationString + " " + contactString;
     }
 
+    /** getter for Date */
+    public Date getDate() {
+        return date;
+    }
+
     //FIXME: INCOMPLETE PLACEHOLDER | override of compareTo() method
     //assume the method header and return are incorrect and must be correctly implemented
     /** FIXME: add javadoc comments */
