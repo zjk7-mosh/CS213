@@ -40,7 +40,6 @@ public class EventCalendar {
     }
 
     /** FIXME: add javadoc comments */
-    //FIXME: incomplete method, must write body
     public boolean add(Event event) {
         //add an event to the list
         if (this.events[events.length - 1] != null){
@@ -56,10 +55,7 @@ public class EventCalendar {
     }
 
     /** FIXME: add javadoc comments */
-    //FIXME: incomplete method, must write body
-    //FIXME: UNTESTED, but I think it should be working fine.
-    //FIXME: The idea for removing an event from any location is to set it equal to the next event instead,
-    //FIXME: and go down the array setting each event equal to the next until we hit null
+    // remove() method working properly!!!!!
     public boolean remove(Event event) {
         //remove an event from the list
         int found = find(event);
@@ -76,14 +72,20 @@ public class EventCalendar {
     //FIXME: incomplete method, must write body
     public boolean contains(Event event) {
         //check if the event is in the list
-
-        return true;
+       if(find(event) != -1){
+           return true;
+       }
+       return false;
     }
 
     /** FIXME: add javadoc comments */
     public void print() {
         //print the array as is
-        System.out.println(events.toString()); //FIXME: may be incorrect
+        for(Event e : events) {
+            if(e != null) {
+                System.out.println(e.toString()); //FIXME: may be incorrect //FIXME: should work now
+            }
+        }
     }
 
     /** FIXME: add javadoc comments */
@@ -107,11 +109,17 @@ public class EventCalendar {
     public static void main(String[] args){
 
         System.out.println(("--Test EventCalender.java--\n"));
-        Event event1 = new Event();
-        Event event2 = new Event();
-        Event event3 = new Event();
-        Event event4 = new Event();
-        Event event5 = new Event();
+        //public Event(Date date, Timeslot startTime, Location location, Contact contact, int duration)
+        Event event1 = new Event(new Date("10/01/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
+        Event event2 = new Event(new Date("10/02/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
+        Event event3 = new Event(new Date("10/03/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
+        Event event4 = new Event(new Date("10/04/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
+        Event event5 = new Event(new Date("10/05/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
+        Event event6 = new Event(new Date("10/06/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
+        Event event7 = new Event(new Date("10/07/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
+        Event event8 = new Event(new Date("10/08/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
+        Event event9 = new Event(new Date("10/09/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
+        Event event10 = new Event(new Date("10/10/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
 
         EventCalendar calendar = new EventCalendar();
         System.out.println("Size of array: " + calendar.events.length);
@@ -125,13 +133,63 @@ public class EventCalendar {
         System.out.println("Size of array: " + calendar.events.length);
         calendar.add(event5);
         System.out.println("Size of array: " + calendar.events.length);
+        calendar.add(event6);
+        System.out.println("Size of array: " + calendar.events.length);
+        calendar.add(event7);
+        System.out.println("Size of array: " + calendar.events.length);
+        calendar.add(event8);
+        System.out.println("Size of array: " + calendar.events.length);
+        calendar.add(event9);
+        System.out.println("Size of array: " + calendar.events.length);
+        calendar.add(event10);
+        System.out.println("Size of array: " + calendar.events.length);
 
-        //Add() working good
-        //grow() working good
+        System.out.println();
+        System.out.println(calendar.events[0]);
+        System.out.println(calendar.events[1]);
+        System.out.println(calendar.events[2]);
+        System.out.println(calendar.events[3]);
+        System.out.println(calendar.events[4]);
+        System.out.println(calendar.events[5]);
+        System.out.println(calendar.events[6]);
+        System.out.println(calendar.events[7]);
+        System.out.println(calendar.events[8]);
+        System.out.println(calendar.events[9]);
+
+        System.out.println(calendar.numEvents);
+        calendar.remove(event3);
+        System.out.println(calendar.numEvents);
+
+        System.out.println(calendar.events[0]);
+        System.out.println(calendar.events[1]);
+        System.out.println(calendar.events[2]);
+        System.out.println(calendar.events[3]);
+        System.out.println(calendar.events[4]);
+        System.out.println(calendar.events[5]);
+        System.out.println(calendar.events[6]);
+        System.out.println(calendar.events[7]);
+        System.out.println(calendar.events[8]);
+        System.out.println(calendar.events[9]);
+
+        System.out.println("Test contains(event10): " + calendar.contains(event10));
+        System.out.println("Test contains(event3): " + calendar.contains(event3));
+
+        System.out.println("\n");
+        calendar.print();
 
         System.out.println("\n\n--Test Complete--");
     }
 
+    //Add() working good
+    //grow() working good
+    //remove() working good
+    //contains() working good
+    //print() working good
+
+    //printByDate() not implemented
+    //printByCampus() not implemented
+    //printByDepartment() not implemented
+    //sort() not implemented
 
 
 }
