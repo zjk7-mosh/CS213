@@ -8,13 +8,14 @@ import java.text.DecimalFormat;
 /** FIXME: add javadoc comments */
 /** A class that represents the Date abstract data type with year, month, and day. ...*/
 public class Date implements Comparable<Date>{
-    private int year;
     private int month;
     private int day;
+    private int year;
 
-    private int MAXMONTHS = 12;
-    private int MAXDAYS = 31;
-    private int ZERO = 0;
+
+
+    public int FULLYEAR = 12;
+    public int ZERO = 0;
 
     /** FIXME: add javadoc comments */
     /** A default constructor that creates a date with today's date. */
@@ -67,8 +68,35 @@ public class Date implements Comparable<Date>{
 
     /** FIXME: add javadoc comments */
     /** Checks if this date object is a valid calendar date. ...*/
+    //FIXME: method is partically correct, but fails to dates out of bound.
     public boolean isValid() {
-        return (this.month <= MAXMONTHS) && (this.day <= MAXDAYS) && (this.year > ZERO);
+
+        int monthMax = monthMax();
+        if(this.month == 2 && leapYear()){
+            monthMax += 1;
+        }
+
+        return (this.month > ZERO && this.month <= FULLYEAR) &&
+                (this.day > ZERO && this.day <= monthMax) &&
+                (this.year > ZERO);
+    }
+
+    private int monthMax() {
+        switch (this.month) {
+            case 1 -> {return DateConstants.JANUARY.getMax();}
+            case 2 -> {return DateConstants.FEBRUARY.getMax();}
+            case 3 -> {return DateConstants.MARCH.getMax();}
+            case 4 -> {return DateConstants.APRIL.getMax();}
+            case 5 -> {return DateConstants.MAY.getMax();}
+            case 6 -> {return DateConstants.JUNE.getMax();}
+            case 7 -> {return DateConstants.JULY.getMax();}
+            case 8 -> {return DateConstants.AUGUST.getMax();}
+            case 9 -> {return DateConstants.SEPTEMBER.getMax();}
+            case 10 -> {return DateConstants.OCTOBER.getMax();}
+            case 11 -> {return DateConstants.NOVEMBER.getMax();}
+            case 12 -> {return DateConstants.DECEMBER.getMax();}
+        }
+        return 31;
     }
 
     /** FIXME: add javadoc comments */
@@ -131,59 +159,64 @@ public class Date implements Comparable<Date>{
         return false;
     }
 
+    private boolean leapYear(){
+        return this.year % 4 == 0;
+    }
+
     /** FIXME: add javadoc comments */
     public static void main(String[] args) {
 
         System.out.println("\n--Testing Date.java class--");
 
-        Date dateZero = new Date();
-        Date NineEleven = new Date(9, 11, 2001);
+//        Date dateZero = new Date();
+//        Date NineEleven = new Date(9, 11, 2001);
         Date today = Date.today();
-        Date twoMonthTwoDay = new Date("10/11/2012");
-        Date twoMonthOneDay = new Date("11/5/2006");
-        Date oneMonthTwoDay = new Date("7/14/2023");
-        Date OneMonthOneDay = new Date("3/8/2009");
+//        Date twoMonthTwoDay = new Date("10/11/2012");
+//        Date twoMonthOneDay = new Date("11/5/2006");
+//        Date oneMonthTwoDay = new Date("7/14/2023");
+//        Date OneMonthOneDay = new Date("3/8/2009");
+        Date validTest = new Date("2/29/2024");
 
-        System.out.println("Test isValid():\t\t" + OneMonthOneDay.isValid());             // COMPLETE
-        System.out.println("Test compareTo():\t" + OneMonthOneDay.compareTo(today));      // COMPLETE
+        System.out.println("Test isValid():\t\t" + validTest.isValid());             // COMPLETE
+        System.out.println("Test compareTo():\t" + validTest.compareTo(today));      // COMPLETE
         System.out.println("Test today():\t\t" + today.toString());              // COMPLETE
-        System.out.println("Test toString():\t" + OneMonthOneDay.toString());             // COMPLETE
-        System.out.println("Test getMonth():\t" + OneMonthOneDay.getMonth());             // COMPLETE
-        System.out.println("Test getDay():\t\t" + OneMonthOneDay.getDay());               // COMPLETE
-        System.out.println("Test getYear():\t\t" + OneMonthOneDay.getYear());             // COMPLETE
-        System.out.println("Test equals():\t\t" + OneMonthOneDay.equals(today));          // COMPLETE
+        System.out.println("Test toString():\t" + validTest.toString());             // COMPLETE
+        System.out.println("Test getMonth():\t" + validTest.getMonth());             // COMPLETE
+        System.out.println("Test getDay():\t\t" + validTest.getDay());               // COMPLETE
+        System.out.println("Test getYear():\t\t" + validTest.getYear());             // COMPLETE
+        System.out.println("Test equals():\t\t" + validTest.equals(today));          // COMPLETE
 
         /** Test case #1 */
-//        private static void testDaysInFeb_Nonleap () {
+//        testDaysInFeb_Nonleap
 //            Date date = new Date("2/29/2011"); //test data
 //            boolean expectedOutput = false; //define expected output
 //            boolean actualOutput = date.isValid(); //call the method to get the actual output
 //            System.out.println("**Test case #1: # of days in Feb. in a non-leap year is 28");
 //            testResult(date, expectedOutput, actualOutput); //compare the results
         //FIXME: NOT IMPLEMENTED
-        System.out.println("--Test Days In Feb During Non Leap Year--");
-        Date nonLeapYear = new Date(2,29,2023);
-        System.out.println(nonLeapYear.toString());
-        System.out.println();
+//        System.out.println("--Test Days In Feb During Non Leap Year--");
+//        Date nonLeapYear = new Date(2,29,2023);
+//        System.out.println(nonLeapYear.toString());
+//        System.out.println();
 //        }
 
         /** Test case #2 */
 //        private static void testDaysInFeb_Leap () {
         //FIXME: NOT IMPLEMENTED
-        System.out.println("--Test Days In Feb During Leap Year--");
-        Date leapYear = new Date(2,29,2023);
-        System.out.println(leapYear.toString());
-        System.out.println();
+//        System.out.println("--Test Days In Feb During Leap Year--");
+//        Date leapYear = new Date(2,29,2023);
+//        System.out.println(leapYear.toString());
+//        System.out.println();
 //        }
 
         /** Test case #3 */
 //        private static void testMonth_OutOfRange () {
         //FIXME: NOT IMPLEMENTED
-        System.out.println("--Test Month Out Of Range--");
-        Date monthOutOfRange = new Date(13,1,2023);
-        System.out.println(monthOutOfRange.toString());
-        System.out.println();
-//        }
+//        System.out.println("--Test Month Out Of Range--");
+//        Date monthOutOfRange = new Date(13,1,2023);
+//        System.out.println(monthOutOfRange.toString());
+//        System.out.println();
+////        }
 
         /** Check if a given test case PASS or FAIL ...*/
 //        private static void testResult (Date date,boolean expectedQutput, boolean actualOutput){
@@ -197,7 +230,7 @@ public class Date implements Comparable<Date>{
     //Date(String()         working good
     //Date(int, int, int)   working good
     //Date(Date)            working good
-    //isValid()             working good
+    //isValid()             FIXME
     //compareTo()           working good
     //today()               working good
     //toString()            working good
