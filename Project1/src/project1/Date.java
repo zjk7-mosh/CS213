@@ -5,31 +5,34 @@ import java.util.StringTokenizer;
 import java.util.Calendar;
 import java.text.DecimalFormat;
 
-/** FIXME: add javadoc comments */
-/** A class that represents the Date abstract data type with year, month, and day. ...*/
+/**
+ * A class that represents the Date abstract data type with year, month, and day.
+ * @author FelipePDaSilva, ZachJKoshy,
+ */
 public class Date implements Comparable<Date>{
     private int month;
     private int day;
     private int year;
 
-
-
+    //FIXME: may want to move these to a separate class, i.e. DateConstants.java
     public int FULLYEAR = 12;
-    public int ZERO = 0;
+    public int ZERO = 0; //FIXME: double check if this is allowed by codingStandard and writeup
 
-    /** FIXME: add javadoc comments */
-    /** A default constructor that creates a date with today's date. */
+
+    /**
+     * Default constructor for Date class.
+     */
     public Date() {
         this.month = 0;
         this.day = 0;
         this.year = 0;
     }
 
-    /** FIXME: add javadoc comments */
-    /** A parameterized constructor that takes a string in a form of "mm/dd/yyyy". ...*/
-    public Date(String date) {  //date in format mm/dd/yyyy
-        //FIXME: currently only works in string parameter is mm/dd/yyyy
-        //FIXME: Fails if parameter is m/d/yyyy
+    /**
+     * Parameterized constructor for Date which takes a string in a form of "mm/dd/yyyy".
+     * @param date the date in a form of "mm/dd/yyyy", with one or two digits for month and day.
+     */
+    public Date(String date) {
         if(date.length() == 10) { // mm/dd/yyyy
             this.month = Integer.parseInt(date.substring(0, 2));
             this.day = Integer.parseInt(date.substring(3, 5));
@@ -51,56 +54,66 @@ public class Date implements Comparable<Date>{
         }
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     * Parameterized constructor for Date class, which takes 3 int values for month, day, and year.
+     * @param month int month
+     * @param day int day
+     * @param year int year
+     */
     public Date(int month, int day, int year) {
         this.month = month;
         this.day = day;
         this.year = year;
     }
 
-    /** FIXME: add javadoc comments */
-    /** A copy constructor that clones a date object. ...*/
+    /**
+     * Copy constructor for Date class, which takes a Date object and clones it.
+     * @param date the Date object to be cloned
+     */
     public Date(Date date) {
         this.month = date.month;
         this.day = date.day;
         this.year = date.year;
     }
 
-    /** FIXME: add javadoc comments */
-    /** Checks if this date object is a valid calendar date. ...*/
-    //FIXME: method is partically correct, but fails to dates out of bound.
+    //FIXME: is isValid() still incomplete?
+        //FIXME: method is partically correct, but fails to dates out of bound.
+    /**
+     * Checks if this date object is a valid calendar date.
+     * @return true if the date is valid, false if the date is invalid.
+     */
     public boolean isValid() {
-
         int monthMax = monthMax();
         if(this.month == 2 && leapYear()){
             monthMax += 1;
         }
-
         return (this.month > ZERO && this.month <= FULLYEAR) &&
                 (this.day > ZERO && this.day <= monthMax) &&
                 (this.year > ZERO);
     }
-
-    private int monthMax() {
-        switch (this.month) {
-            case 1 -> {return DateConstants.JANUARY.getMax();}
-            case 2 -> {return DateConstants.FEBRUARY.getMax();}
-            case 3 -> {return DateConstants.MARCH.getMax();}
-            case 4 -> {return DateConstants.APRIL.getMax();}
-            case 5 -> {return DateConstants.MAY.getMax();}
-            case 6 -> {return DateConstants.JUNE.getMax();}
-            case 7 -> {return DateConstants.JULY.getMax();}
-            case 8 -> {return DateConstants.AUGUST.getMax();}
-            case 9 -> {return DateConstants.SEPTEMBER.getMax();}
-            case 10 -> {return DateConstants.OCTOBER.getMax();}
-            case 11 -> {return DateConstants.NOVEMBER.getMax();}
-            case 12 -> {return DateConstants.DECEMBER.getMax();}
+        private int monthMax() { //FIXME: does this indentation of a helper method meet codingStandard?
+            switch (this.month) {
+                case 1 -> {return DateConstants.JANUARY.getMax();}
+                case 2 -> {return DateConstants.FEBRUARY.getMax();}
+                case 3 -> {return DateConstants.MARCH.getMax();}
+                case 4 -> {return DateConstants.APRIL.getMax();}
+                case 5 -> {return DateConstants.MAY.getMax();}
+                case 6 -> {return DateConstants.JUNE.getMax();}
+                case 7 -> {return DateConstants.JULY.getMax();}
+                case 8 -> {return DateConstants.AUGUST.getMax();}
+                case 9 -> {return DateConstants.SEPTEMBER.getMax();}
+                case 10 -> {return DateConstants.OCTOBER.getMax();}
+                case 11 -> {return DateConstants.NOVEMBER.getMax();}
+                case 12 -> {return DateConstants.DECEMBER.getMax();}
+            }
+            return 31;
         }
-        return 31;
-    }
 
-    /** FIXME: add javadoc comments */
-    /** This method compares 2 dates. ...*/
+    /**
+     * Compares two dates to see if they are equal.
+     * @param date the object to be compared.
+     * @return 0 if the dates are equal, 1 if this date is greater than the other date, -1 if this date is less than the other date.
+     */
     @Override
     public int compareTo(Date date) {
         if ((this.month == date.month) && (this.day == date.day) && (this.year == date.year)){
@@ -112,8 +125,10 @@ public class Date implements Comparable<Date>{
         }
     }
 
-    /** FIXME: add javadoc comments */
-    /** Return today's date. ...*/
+    /**
+     * Returns today's date.
+     * @return today's date
+     */
     public static Date today() {
         //FIXME: had to replace LocalDate with Calendar, check that output is correct
         Calendar calendar = Calendar.getInstance();
@@ -123,34 +138,44 @@ public class Date implements Comparable<Date>{
         return new Date(month, day, year);
     }
 
-    /** FIXME: add javadoc comments */
-    /** Return the textual representation of a Date object. ...*/
+    /**
+     * Returns the textual representation of a Date object.
+     * @return the textual representation of a Date object
+     */
     @Override
     public String toString() { //Good
         return month + "/" + day + "/" + year;
     }
 
-    /** FIXME: add javadoc comments */
-    /** Getter method for the day of a date. ...*/
+    /**
+     * Getter method for the day of a date.
+     * @return the day of a date
+     */
     public int getDay() { //Good
         return day;
     }
 
-    /** FIXME: add javadoc comments */
-    /** Getter method for the month of a date ...*/
+    /**
+     * Getter method for the month of a date.
+     * @return the month of a date
+     */
     public int getMonth() { //Good
         return month;
     }
 
-    /** FIXME: add javadoc comments */
-    /** Getter method for the year of a date. ...*/
+    /**
+     * Getter method for the year of a date.
+     * @return the year of a date
+     */
     public int getYear() { //Good
         return year;
     }
 
-    /** FIXME: add javadoc comments */
-    /** Check if two dates are the same date. ...*/
-    //bs: may be unnecessary, this is not required in the project description
+    /**
+     * Checks if two dates are the same date.
+     * @param obj
+     * @return true if the dates are the same, false if the dates are not the same.
+     */
     @Override
     public boolean equals(Object obj) { //Good
         if (obj instanceof Date){
@@ -159,15 +184,21 @@ public class Date implements Comparable<Date>{
         return false;
     }
 
+    /**
+     * Tells whether a given year is a leap year or not.
+     * @return true if the year is a leap year, false if the year is not a leap year.
+     */
     private boolean leapYear(){
         return this.year % 4 == 0;
     }
 
-    /** FIXME: add javadoc comments */
+    //FIXME: reformat testbed main to execute the required testcases for Date.isValid()
+    /**
+     * Testbed main() for Date class.
+     * @param args
+     */
     public static void main(String[] args) {
-
         System.out.println("\n--Testing Date.java class--");
-
 //        Date dateZero = new Date();
 //        Date NineEleven = new Date(9, 11, 2001);
         Date today = Date.today();
@@ -176,7 +207,6 @@ public class Date implements Comparable<Date>{
 //        Date oneMonthTwoDay = new Date("7/14/2023");
 //        Date OneMonthOneDay = new Date("3/8/2009");
         Date validTest = new Date("2/29/2024");
-
         System.out.println("Test isValid():\t\t" + validTest.isValid());             // COMPLETE
         System.out.println("Test compareTo():\t" + validTest.compareTo(today));      // COMPLETE
         System.out.println("Test today():\t\t" + today.toString());              // COMPLETE
@@ -185,7 +215,6 @@ public class Date implements Comparable<Date>{
         System.out.println("Test getDay():\t\t" + validTest.getDay());               // COMPLETE
         System.out.println("Test getYear():\t\t" + validTest.getYear());             // COMPLETE
         System.out.println("Test equals():\t\t" + validTest.equals(today));          // COMPLETE
-
         /** Test case #1 */
 //        testDaysInFeb_Nonleap
 //            Date date = new Date("2/29/2011"); //test data
@@ -193,36 +222,31 @@ public class Date implements Comparable<Date>{
 //            boolean actualOutput = date.isValid(); //call the method to get the actual output
 //            System.out.println("**Test case #1: # of days in Feb. in a non-leap year is 28");
 //            testResult(date, expectedOutput, actualOutput); //compare the results
-        //FIXME: NOT IMPLEMENTED
+
 //        System.out.println("--Test Days In Feb During Non Leap Year--");
 //        Date nonLeapYear = new Date(2,29,2023);
 //        System.out.println(nonLeapYear.toString());
 //        System.out.println();
 //        }
-
         /** Test case #2 */
 //        private static void testDaysInFeb_Leap () {
-        //FIXME: NOT IMPLEMENTED
+
 //        System.out.println("--Test Days In Feb During Leap Year--");
 //        Date leapYear = new Date(2,29,2023);
 //        System.out.println(leapYear.toString());
 //        System.out.println();
 //        }
-
         /** Test case #3 */
 //        private static void testMonth_OutOfRange () {
-        //FIXME: NOT IMPLEMENTED
+
 //        System.out.println("--Test Month Out Of Range--");
 //        Date monthOutOfRange = new Date(13,1,2023);
 //        System.out.println(monthOutOfRange.toString());
 //        System.out.println();
 ////        }
-
         /** Check if a given test case PASS or FAIL ...*/
 //        private static void testResult (Date date,boolean expectedQutput, boolean actualOutput){
-//
 //        }
-
         System.out.println("--Test Complete--");
     }
 
@@ -230,7 +254,7 @@ public class Date implements Comparable<Date>{
     //Date(String()         working good
     //Date(int, int, int)   working good
     //Date(Date)            working good
-    //isValid()             FIXME
+    //isValid()
     //compareTo()           working good
     //today()               working good
     //toString()            working good

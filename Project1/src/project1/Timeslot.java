@@ -5,7 +5,10 @@ import java.util.StringTokenizer;
 import java.util.Calendar;
 import java.text.DecimalFormat;
 
-/** FIXME: add javadoc comments */
+/**
+ * This enum class represents the different timeslots when an event to take place.
+ * @author FelipePDaSilva, ZachJKoshy,
+ */
 public enum Timeslot {
     MORNING("10:30am"),
     AFTERNOON("2:00pm"),
@@ -14,6 +17,10 @@ public enum Timeslot {
     private int hour;
     private int minutes;
 
+    /**
+     * Parameterized constructor for Timeslot class.
+     * @param startingTime the starting time
+     */
     Timeslot (String startingTime) {
         //startingTime = startingTime.toUpperCase();
         this.startingTime = startingTime;
@@ -33,18 +40,34 @@ public enum Timeslot {
         }
     }
 
+    /**
+     * Returns the starting time of the timeslot.
+     * @return the starting time of the timeslot
+     */
     public String getStartingTime(){
         return this.startingTime;
     }
 
+    /**
+     * Returns the hour of the timeslot.
+     * @return the hour of the timeslot
+     */
     public int getHour(){
         return this.hour;
     }
 
+    /**
+     * Returns the minutes of the timeslot.
+     * @return the minutes of the timeslot
+     */
     public int getMinutes(){
         return this.minutes;
     }
 
+    /**
+     * Testbed main() for enum Timeslot class.
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         System.out.println("Timeslot: " + Timeslot.MORNING);
         System.out.println("Timeslot: " + Timeslot.AFTERNOON);

@@ -5,28 +5,39 @@ import java.util.StringTokenizer;
 import java.util.Calendar;
 import java.text.DecimalFormat;
 
-/** FIXME: add javadoc comments */
+/**
+ * A class that represents the Contact abstract data type with fields; department and email.
+ * @author FelipePDaSilva, ZachJKoshy,
+ */
 public class Contact implements Comparable<Contact>{
     private Department department;
     private String email;
 
-    /** FIXME: add javadoc comments */
-    /** A default constructor that creates a new contact. */
+    /**
+     * Test constructor for Contact class.
+     */
     public Contact(){   // Good
         this.department = Department.CS;
         this.email = "cs@rutgers.edu";
     }
 
-    /** FIXME: add javadoc comments */
-    /** A parameterized constructor that takes a string in a form of "mm/dd/yyyy". ...*/
+    /**
+     * Parameterized constructor for Contact class, which takes a department and email.
+     * @param department the department
+     * @param email the email
+     */
     public Contact(Department department, String email){ // Good
         this.department = department;
         this.email = email;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     * Checks if the contact is valid.
+     * @return true if the contact is valid, false otherwise
+     */
     public boolean isValid() {
-        //FIXME: implement proper code "could not figure it out yet"
+        //FIXME: Is this complete?
+            //FIXME: implement proper code "could not figure it out yet"
         if((this.department == Department.EE && this.email.equals("ee@rutgers.edu")) ||
                 (this.department == Department.MATH && this.email.equals("math@rutgers.edu")) ||
                 (this.department == Department.CS && this.email.equals("cs@rutgers.edu")) ||
@@ -37,19 +48,29 @@ public class Contact implements Comparable<Contact>{
         return false;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     * returns the department and email of the contact as a string.
+     * @return the department and email of the contact as a string
+     */
     @Override
     public String toString(){
         return department.getFullName() + ", " + email;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     * Compares two Contacts to see if they are equal.
+     * @param contact the object to be compared.
+     * @return 0 if the objects are equal, -1 if the object is less than the argument, 1 if the object is greater than the argument
+     */
     @Override
     public int compareTo(Contact contact){
         return this.department.getFullName().compareTo(contact.department.getFullName());
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     * Testbed main() for Contact class.
+     * @param args the command line arguments
+     */
     public static void main(String[] args){
         System.out.println("\n--Testing Contact.java class--");
 

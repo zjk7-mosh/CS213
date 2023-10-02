@@ -5,21 +5,29 @@ import java.util.StringTokenizer;
 import java.util.Calendar;
 import java.text.DecimalFormat;
 
-/** FIXME: add javadoc comments */
+//FIXME: might want to add to this javadoc comment before submission
+/**
+ * This class represents the EventCalendar data type
+ * @author FelipePDaSilva, ZachJKoshy
+ */
 public class EventCalendar {
     private Event[] events; //the array holding the list of events
     private int numEvents; //current number of events in the array
 
-    //  ... may need to add other attributes and methods
+    /**
+     * Default constructor for EventCalendar class, Initializes the array with a capacity of 4.
+     */
     public EventCalendar(){
         this.events = new Event[4];
         this.numEvents = 0;
     }
 
-    /** FIXME: add javadoc comments */
-    //FIXME: incomplete method, must write body
+    /**
+     * searches for an event in the list
+     * @param event the event to be searched for
+     * @return the index of the event if found, -1 otherwise
+     */
     private int find(Event event) {
-        //search an event in the list
         for(int i = 0; i < numEvents; i++){
             if(events[i].equals(event)){
                 return i;
@@ -27,8 +35,10 @@ public class EventCalendar {
         }
         return -1;
     }
-    /** FIXME: add javadoc comments */
-    //FIXME: incomplete method, must write body
+
+    /**
+     * increases the capacity of the array by 4
+     */
     private void grow() {
         //increase the capacity by 4
         Event[] copy = new Event[numEvents + 4];
@@ -39,7 +49,11 @@ public class EventCalendar {
         copy = null;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     * adds an event to the list
+     * @param event the event to be added
+     * @return true if the event was added, false otherwise
+     */
     public boolean add(Event event) {
         //add an event to the list
         if (this.events[events.length - 1] != null){
@@ -54,8 +68,11 @@ public class EventCalendar {
         return false;
     }
 
-    /** FIXME: add javadoc comments */
-    // remove() method working properly!!!!!
+    /**
+     * removes an event from the list
+     * @param event the event to be removed
+     * @return true if the event was removed, false otherwise
+     */
     public boolean remove(Event event) {
         //remove an event from the list
         int found = find(event);
@@ -68,17 +85,18 @@ public class EventCalendar {
         return true;
     }
 
-    /** FIXME: add javadoc comments */
-    //FIXME: is this complete?
+    /**
+     * checks if the list contains an event
+     * @param event the event to be checked
+     * @return true if the event is in the list, false otherwise
+     */
     public boolean contains(Event event) {
-        //check if the event is in the list
-       if(find(event) != -1){
-           return true;
-       }
-       return false;
+        return find(event) != -1;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     * prints the list of events to System.out.
+     */
     public void print() {
         //print the array as is
         for(Event event : events) {
@@ -88,96 +106,115 @@ public class EventCalendar {
         }
     }
 
-    /** FIXME: add javadoc comments */
-    //FIXME: incomplete method, must write body
+    /**
+     * prints the list of events ordered by date and timeslot to System.out.
+     */
     public void printDate() {
         sortDate();
         print();
-    } //ordered by date and timeslot
+    }
 
-    /** FIXME: add javadoc comments */
-    //FIXME: incomplete method, must write body
+    /**
+     * prints the list of events ordered by location to System.out.
+     */
     public void printLocation() {
         sortLocation();
         print();
-    } //ordered by campus and building/room
+    }
 
-    /** FIXME: add javadoc comments */
-    //FIXME: incomplete method, must write body
+    /**
+     * prints the list of events ordered by department to System.out.
+     */
     public void printDepartment(){
         sortDepartment();
         print();
-    } //ordered by department
-
-    /** FIXME: add javadoc comments*/
-    //FIXME: created this private swap() helper method to reduce the code in each sort() method
-    private void swap(int a){
-        Event temp = events[a];
-        events[a] = events[a + 1];
-        events[a + 1] = temp;
     }
 
-    //FIXME: Sorting modes - functionality NOT COMPLETE
+
+
+    //FIXME: Sorting modes - Is this COMPLETE?
     //Need to implement 3 sorting MODES; by date, location(campus/building/room), and department
     //current implementation is using 3 separate methods for each mode
     //another possible implementation is using enums to determine the sorting mode
-        private void sortDate() {                           //removed Events[] parameter, I think it should just sort the private Events[] attribute instead
-            boolean swapped;
-            for (int i = 0; i < numEvents - 1; i++) {       //lol, event.length is also equal to its private attribute numEvents
-                swapped = false;
-                for (int j = 0; j < numEvents - i - 1; j++) {
-                    if (events[j].getDate().compareTo(events[j + 1].getDate()) > 0) {
-                        swap(j);                            // Swap people[j] with people[j+1]
-                        swapped = true;
-                    }
-                }
-                // If no two elements were swapped by inner loop, then break
-                if (!swapped) {
-                    break;
+    /**
+     * Sorts the list of events by date and timeslot
+     */
+    private void sortDate() {                           //removed Events[] parameter, I think it should just sort the private Events[] attribute instead
+        boolean swapped;
+        for (int i = 0; i < numEvents - 1; i++) {       //lol, event.length is also equal to its private attribute numEvents
+            swapped = false;
+            for (int j = 0; j < numEvents - i - 1; j++) {
+                if (events[j].getDate().compareTo(events[j + 1].getDate()) > 0) {
+                    swap(j);                            // Swap people[j] with people[j+1]
+                    swapped = true;
                 }
             }
-        }
-        //FIXME: NOT COMPLETE
-        //Still need to test, and implement sorting by location (campus/building/room), and also by department
-        private void sortLocation() {
-            boolean swapped;
-            for (int i = 0; i < numEvents - 1; i++) {       //lol, event.length is also equal to its private attribute numEvents
-                swapped = false;
-                for (int j = 0; j < numEvents - i - 1; j++) {
-                    if (events[j].getLocation().compareTo(events[j + 1].getLocation()) > 0) {
-                        swap(j);                            // Swap people[j] with people[j+1]
-                        swapped = true;
-                    }
-                }
-                // If no two elements were swapped by inner loop, then break
-                if (!swapped) {
-                    break;
-                }
+            // If no two elements were swapped by inner loop, then break
+            if (!swapped) {
+                break;
             }
         }
-        //FIXME: NOT COMPLETE
-        //FIXME: compareTo() method for Contact class incomplete
-        //Still need to test, and implement sorting by location (campus/building/room), and also by department
-        private void sortDepartment() {
-            boolean swapped;
-            for (int i = 0; i < numEvents - 1; i++) {       //lol, event.length is also equal to its private attribute numEvents
-                swapped = false;
-                for (int j = 0; j < numEvents - i - 1; j++) {
-                    //FIXME: compareTo() method for Contact class incomplete
-                    if (events[j].getContact().compareTo(events[j + 1].getContact()) > 0) {
-                        swap(j);                            // Swap people[j] with people[j+1]
-                        swapped = true;
-                    }
-                }
-                // If no two elements were swapped by inner loop, then break
-                if (!swapped) {
-                    break;
+    }
+
+    //FIXME: NOT COMPLETE
+    //Still need to test, and implement sorting by location (campus/building/room), and also by department
+    /**
+     * Sorts the list of events by location
+     */
+    private void sortLocation() {
+        boolean swapped;
+        for (int i = 0; i < numEvents - 1; i++) {       //lol, event.length is also equal to its private attribute numEvents
+            swapped = false;
+            for (int j = 0; j < numEvents - i - 1; j++) {
+                if (events[j].getLocation().compareTo(events[j + 1].getLocation()) > 0) {
+                    swap(j);                            // Swap people[j] with people[j+1]
+                    swapped = true;
                 }
             }
+            // If no two elements were swapped by inner loop, then break
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+    //FIXME: NOT COMPLETE
+    //FIXME: compareTo() method for Contact class incomplete
+    //Still need to test, and implement sorting by location (campus/building/room), and also by department
+    /**
+     * Sorts the list of events by department
+     */
+    private void sortDepartment() {
+        boolean swapped;
+        for (int i = 0; i < numEvents - 1; i++) {       //lol, event.length is also equal to its private attribute numEvents
+            swapped = false;
+            for (int j = 0; j < numEvents - i - 1; j++) {
+                //FIXME: compareTo() method for Contact class incomplete
+                if (events[j].getContact().compareTo(events[j + 1].getContact()) > 0) {
+                    swap(j);                            // Swap people[j] with people[j+1]
+                    swapped = true;
+                }
+            }
+            // If no two elements were swapped by inner loop, then break
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+        //FIXME: check if indenting this helper method follows guidelines
+        /**
+         * helper method for sort methods, which swaps two events in the array
+         * @param a the index of the first event
+         */
+        private void swap(int a){
+            Event temp = events[a];
+            events[a] = events[a + 1];
+            events[a + 1] = temp;
         }
 
-
-
+    /**
+     * Testbed main driver method for EventCalendar.java class.
+     * @param args the command line arguments
+     */
     public static void main(String[] args){
 
         System.out.println(("--Test EventCalender.java--\n"));

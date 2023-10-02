@@ -5,7 +5,10 @@ import java.util.StringTokenizer;
 import java.util.Calendar;
 import java.text.DecimalFormat;
 
-/** FIXME: add javadoc comments */
+/**
+ A class that represents the Event abstract data type with fields; date, startTime, location, contact, and duration.
+ @author FelipePDaSilva, ZachJKoshy,
+*/
 public class Event implements Comparable<Event> {
     private Date date; //the event date
     private Timeslot startTime; //the starting time
@@ -13,7 +16,9 @@ public class Event implements Comparable<Event> {
     private Contact contact; //include the department name and email
     private int duration; //in minutes
 
-    /** FIXME: add javadoc comments */
+    /**
+     Default constructor for Event class.
+     */
     public Event(){
         this.date = new Date();
         this.startTime = Timeslot.MORNING;
@@ -22,7 +27,14 @@ public class Event implements Comparable<Event> {
         this.duration = 60;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     Parameterized constructor for Event class.
+     @param date the event date
+     @param startTime the starting time
+     @param location the location
+     @param contact the contact
+     @param duration the duration
+     */
     public Event(Date date, Timeslot startTime, Location location, Contact contact, int duration) { // Good
         this.date = date;
         this.startTime = startTime;
@@ -31,21 +43,28 @@ public class Event implements Comparable<Event> {
         this.duration = duration;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     Compares two objects to see if they are equal.
+     @param obj the object to be compared
+     @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         //returns true if two dates, timeslots and locations are equal
         if (obj instanceof Event){
-            return this.date == ((Event) obj).date && this.startTime == ((Event) obj).startTime && this.location == ((Event) obj).location;
+            return this.date == ((Event) obj).date && this.startTime == ((Event) obj).startTime &&
+                    this.location == ((Event) obj).location;
         }
         return false;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     Returns a textual representation of an event in the following format:
+     [Event Date: 10/21/2023] [Start: 2:00pm] [End: 3:00pm] @HLL114 (Hill Center, Busch) [Contact: Computer Science, cs@rutgers.edu]
+     @return a textual representation of an event
+    */
     @Override
     public String toString() {
-        //returns a textual representation of an event in the following format:
-        //"[Event Date: 10/21/2023] [Start: 2:00pm] [End: 3:00pm] @HLL114 (Hill Center, Busch) [Contact: Computer Science, cs@rutgers.edu]"
         String endTime = calculateEndtime();
 
         String dateString = "[Event Date: " + date.getMonth() + "/" + date.getDay() + "/" + date.getYear() + "]";
@@ -59,6 +78,10 @@ public class Event implements Comparable<Event> {
         return dateString + " " + timeString + " " + locationString + " " + contactString;
     }
 
+    /**
+     Calculates the end time of an event.
+     @return the end time of an event
+     */
     private String calculateEndtime(){
         int startHour = startTime.getHour();
         int startMinutes = startTime.getMinutes();
@@ -83,22 +106,35 @@ public class Event implements Comparable<Event> {
         return endTime;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     Getter method for the date of an event.
+     @return the date of an event
+     */
     public Date getDate() {
         return date;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     * Getter method for the location of an event.
+     * @return the location of an event
+     */
     public Location getLocation() {
         return location;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     * Getter method for the contact of an event.
+     * @return the contact of an event
+     */
     public Contact getContact() {
         return contact;
     }
 
-    /** FIXME: add javadoc comments */
+    /**
+     * Compares two events to see which one is greater.
+     * @param o the object to be compared.
+     * @return 1 if the object is greater, -1 if the object is less, 0 if the object is equal.
+     */
     @Override
     public int compareTo(Event o) {
         //compares the dates first, then the timeslots if the dates are the same
@@ -117,8 +153,20 @@ public class Event implements Comparable<Event> {
         }
     }
 
-    /** FIXME: add javadoc comments */
+    //FIXME: Must create a testbed main driver which follows Prof's demo
+    /**
+     * Testbed main driver method for Event.java class.
+     * @param args
+     */
     public static void main(String[] args) {
+
+
+    }
+
+    /**
+     * Old tests for Event.java class.
+     */
+    private static void oldTests() {
         System.out.println("\n--Testing Event.java class--");
 
         Date dateZero = new Date();
@@ -143,7 +191,6 @@ public class Event implements Comparable<Event> {
         System.out.println("Test compareTo(): " + event1.compareTo(event1));
 
         System.out.println("\n--Test Complete--");
-
     }
 
     //Event()               working good
