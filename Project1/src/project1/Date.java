@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
 //removed LocalDate import
 
 /** A class that represents the Date abstract data type with year, month, and day. ...*/
-public class Date implements Comparable<Date> {
+public class Date implements Comparable<Date>{
     private int year;
     private int month;
     private int day;
@@ -126,14 +126,14 @@ public class Date implements Comparable<Date> {
         Date today = Date.today();
         Date someday = new Date("07/07/2007");
 
-        System.out.println("Test isValid():\t\t" + someday.isValid());             // COMPLETE
-        System.out.println("Test compareTo():\t" + someday.compareTo(someday));      // COMPLETE
+        System.out.println("Test isValid():\t\t" + today.isValid());             // COMPLETE
+        System.out.println("Test compareTo():\t" + today.compareTo(today));      // COMPLETE
         System.out.println("Test today():\t\t" + today.toString());              // COMPLETE
-        System.out.println("Test toString():\t" + someday.toString());             // COMPLETE
-        System.out.println("Test getMonth():\t" + someday.getMonth());             // COMPLETE
-        System.out.println("Test getDay():\t\t" + someday.getDay());               // COMPLETE
-        System.out.println("Test getYear():\t\t" + someday.getYear());             // COMPLETE
-        System.out.println("Test equals():\t\t" + someday.equals(someday));          // COMPLETE
+        System.out.println("Test toString():\t" + today.toString());             // COMPLETE
+        System.out.println("Test getMonth():\t" + today.getMonth());             // COMPLETE
+        System.out.println("Test getDay():\t\t" + today.getDay());               // COMPLETE
+        System.out.println("Test getYear():\t\t" + today.getYear());             // COMPLETE
+        System.out.println("Test equals():\t\t" + today.equals(today));          // COMPLETE
 
         String todayString = Date.today().toString(); // in format yyyy-mm-dd
         System.out.println(todayString);

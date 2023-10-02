@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.text.DecimalFormat;
 
 /** FIXME: add javadoc comments */
-public class Contact {
+public class Contact implements Comparable<Contact>{
     private Department department;
     private String email;
 
@@ -37,6 +37,12 @@ public class Contact {
     @Override
     public String toString(){ // Good
         return "Contact: " + department.getFullName() + ", " + email;
+    }
+
+    //FIXME: compareTo() method for Contact class incomplete
+    @Override
+    public int compareTo(Contact contact){
+        return 1;
     }
 
     public static void main(String[] args){
