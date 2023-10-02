@@ -4,41 +4,60 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.Calendar;
 import java.text.DecimalFormat;
-//removed LocalDate import
 
+/** FIXME: add javadoc comments */
 /** A class that represents the Date abstract data type with year, month, and day. ...*/
 public class Date implements Comparable<Date>{
     private int year;
     private int month;
     private int day;
 
+    private int MAXMONTHS = 12;
+    private int MAXDAYS = 31;
+    private int ZERO = 0;
+
+    /** FIXME: add javadoc comments */
     /** A default constructor that creates a date with today's date. */
     public Date() {
-        //FIXME: implement proper code "could not figure it out yet"
-        // temporary date set to 0/0/0
-        // I actually think this is fine, the today() method instantiates todays date,
-        // So this should probably remain default to 0/0/0 don't you think?
         this.month = 0;
         this.day = 0;
         this.year = 0;
     }
 
+    /** FIXME: add javadoc comments */
     /** A parameterized constructor that takes a string in a form of "mm/dd/yyyy". ...*/
     public Date(String date) {  //date in format mm/dd/yyyy
         //FIXME: currently only works in string parameter is mm/dd/yyyy
         //FIXME: Fails if parameter is m/d/yyyy
-        this.month = Integer.parseInt(date.substring(0,2));
-        this.day = Integer.parseInt(date.substring(3,5));
-        this.year = Integer.parseInt(date.substring(6));
+        if(date.length() == 10) { // mm/dd/yyyy
+            this.month = Integer.parseInt(date.substring(0, 2));
+            this.day = Integer.parseInt(date.substring(3, 5));
+            this.year = Integer.parseInt(date.substring(6));
+        } else if (date.length() == 9) {
+            if(date.charAt(1) == '/'){  // m/dd/yyyy
+                this.month = Integer.parseInt(date.substring(0, 1));
+                this.day = Integer.parseInt(date.substring(2, 4));
+                this.year = Integer.parseInt(date.substring(5));
+            } else if (date.charAt(2) == '/') { // mm/d/yyyy
+                this.month = Integer.parseInt(date.substring(0, 2));
+                this.day = Integer.parseInt(date.substring(3, 4));
+                this.year = Integer.parseInt(date.substring(5));
+            }
+        } else if (date.length() == 8) { // m/d/yyyy
+            this.month = Integer.parseInt(date.substring(0, 1));
+            this.day = Integer.parseInt(date.substring(2, 3));
+            this.year = Integer.parseInt(date.substring(4));
+        }
     }
 
-    // I believe the constructor should take in 3 int parameters???
+    /** FIXME: add javadoc comments */
     public Date(int month, int day, int year) {
         this.month = month;
         this.day = day;
         this.year = year;
     }
 
+    /** FIXME: add javadoc comments */
     /** A copy constructor that clones a date object. ...*/
     public Date(Date date) {
         this.month = date.month;
@@ -46,14 +65,13 @@ public class Date implements Comparable<Date>{
         this.year = date.year;
     }
 
+    /** FIXME: add javadoc comments */
     /** Checks if this date object is a valid calendar date. ...*/
     public boolean isValid() {
-        //check if the date is a valid calendar date
-        //FIXME: I think its working fine, double check
-        //FIXME: Magic numbers used here to set limits for valid days,months,and years.
-        return (this.month <= 12) && (this.day <= 31) && (this.year > 0);
+        return (this.month <= MAXMONTHS) && (this.day <= MAXDAYS) && (this.year > ZERO);
     }
 
+    /** FIXME: add javadoc comments */
     /** This method compares 2 dates. ...*/
     @Override
     public int compareTo(Date date) {
@@ -66,6 +84,7 @@ public class Date implements Comparable<Date>{
         }
     }
 
+    /** FIXME: add javadoc comments */
     /** Return today's date. ...*/
     public static Date today() {
         //FIXME: had to replace LocalDate with Calendar, check that output is correct
@@ -74,38 +93,34 @@ public class Date implements Comparable<Date>{
         int month = calendar.get(Calendar.MONTH) + 1; // Calendar.MONTH is 0-based
         int year = calendar.get(Calendar.YEAR);
         return new Date(month, day, year);
-        /*
-        String todayString = year + "-" + month + "-" + day;
-            //rm: String todayString = LocalDate.now().toString(); // in format yyyy-mm-dd
-        int todayMonth = Integer.parseInt(todayString.substring(5,7));
-        int todayDay = Integer.parseInt(todayString.substring(8));
-        int todayYear = Integer.parseInt(todayString.substring(0,4));
-        return new Date(todayMonth, todayDay, todayYear);
-        */
-
     }
 
+    /** FIXME: add javadoc comments */
     /** Return the textual representation of a Date object. ...*/
     @Override
     public String toString() { //Good
         return month + "/" + day + "/" + year;
     }
 
+    /** FIXME: add javadoc comments */
     /** Getter method for the day of a date. ...*/
     public int getDay() { //Good
         return day;
     }
 
+    /** FIXME: add javadoc comments */
     /** Getter method for the month of a date ...*/
     public int getMonth() { //Good
         return month;
     }
 
+    /** FIXME: add javadoc comments */
     /** Getter method for the year of a date. ...*/
     public int getYear() { //Good
         return year;
     }
 
+    /** FIXME: add javadoc comments */
     /** Check if two dates are the same date. ...*/
     //bs: may be unnecessary, this is not required in the project description
     @Override
@@ -116,7 +131,7 @@ public class Date implements Comparable<Date>{
         return false;
     }
 
-    //I inserted the following test cases into one testbed main driver
+    /** FIXME: add javadoc comments */
     public static void main(String[] args) {
 
         System.out.println("\n--Testing Date.java class--");
@@ -124,20 +139,19 @@ public class Date implements Comparable<Date>{
         Date dateZero = new Date();
         Date NineEleven = new Date(9, 11, 2001);
         Date today = Date.today();
-        Date someday = new Date("07/07/2007");
+        Date twoMonthTwoDay = new Date("10/11/2012");
+        Date twoMonthOneDay = new Date("11/5/2006");
+        Date oneMonthTwoDay = new Date("7/14/2023");
+        Date OneMonthOneDay = new Date("3/8/2009");
 
-        System.out.println("Test isValid():\t\t" + today.isValid());             // COMPLETE
-        System.out.println("Test compareTo():\t" + today.compareTo(today));      // COMPLETE
+        System.out.println("Test isValid():\t\t" + OneMonthOneDay.isValid());             // COMPLETE
+        System.out.println("Test compareTo():\t" + OneMonthOneDay.compareTo(today));      // COMPLETE
         System.out.println("Test today():\t\t" + today.toString());              // COMPLETE
-        System.out.println("Test toString():\t" + today.toString());             // COMPLETE
-        System.out.println("Test getMonth():\t" + today.getMonth());             // COMPLETE
-        System.out.println("Test getDay():\t\t" + today.getDay());               // COMPLETE
-        System.out.println("Test getYear():\t\t" + today.getYear());             // COMPLETE
-        System.out.println("Test equals():\t\t" + today.equals(today));          // COMPLETE
-
-        String todayString = Date.today().toString(); // in format yyyy-mm-dd
-        System.out.println(todayString);
-        System.out.println();
+        System.out.println("Test toString():\t" + OneMonthOneDay.toString());             // COMPLETE
+        System.out.println("Test getMonth():\t" + OneMonthOneDay.getMonth());             // COMPLETE
+        System.out.println("Test getDay():\t\t" + OneMonthOneDay.getDay());               // COMPLETE
+        System.out.println("Test getYear():\t\t" + OneMonthOneDay.getYear());             // COMPLETE
+        System.out.println("Test equals():\t\t" + OneMonthOneDay.equals(today));          // COMPLETE
 
         /** Test case #1 */
 //        private static void testDaysInFeb_Nonleap () {
@@ -178,4 +192,17 @@ public class Date implements Comparable<Date>{
 
         System.out.println("--Test Complete--");
     }
+
+    //Date()                working good
+    //Date(String()         working good
+    //Date(int, int, int)   working good
+    //Date(Date)            working good
+    //isValid()             working good
+    //compareTo()           working good
+    //today()               working good
+    //toString()            working good
+    //getMonth()            working good
+    //getDay()              working good
+    //getYear()             working good
+    //equals()              working good
 }

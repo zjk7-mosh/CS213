@@ -13,6 +13,7 @@ public class Event implements Comparable<Event> {
     private Contact contact; //include the department name and email
     private int duration; //in minutes
 
+    /** FIXME: add javadoc comments */
     public Event(){
         this.date = new Date();
         this.startTime = Timeslot.MORNING;
@@ -30,8 +31,6 @@ public class Event implements Comparable<Event> {
         this.duration = duration;
     }
 
-    //FIXME: INCOMPLETE PLACEHOLDER | override of equals() method
-    //assume the method header and return are incorrect and must be correctly implemented
     /** FIXME: add javadoc comments */
     @Override
     public boolean equals(Object obj) {
@@ -42,8 +41,6 @@ public class Event implements Comparable<Event> {
         return false;
     }
 
-    //FIXME: INCOMPLETE PLACEHOLDER | override of toString() method
-    //assume the method header and return are incorrect and must be correctly implemented
     /** FIXME: add javadoc comments */
     @Override
     public String toString() {
@@ -56,28 +53,26 @@ public class Event implements Comparable<Event> {
 
 
         String locationString = "@" + location + " (" + location.getCampus() + ")";
-        String contactString = "[" + contact.toString() + "]";
+        String contactString = "[Contact: " + contact.toString() + "]";
 
         return dateString + " " + timeString + " " + locationString + " " + contactString;
     }
 
-    /** getter for Date */
+    /** FIXME: add javadoc comments */
     public Date getDate() {
         return date;
     }
 
-    /** getter for Location */
+    /** FIXME: add javadoc comments */
     public Location getLocation() {
         return location;
     }
 
-    /** getter for Contact*/
+    /** FIXME: add javadoc comments */
     public Contact getContact() {
         return contact;
     }
 
-    //FIXME: INCOMPLETE PLACEHOLDER | override of compareTo() method
-    //assume the method header and return are incorrect and must be correctly implemented
     /** FIXME: add javadoc comments */
     @Override
     public int compareTo(Event o) {
@@ -97,31 +92,22 @@ public class Event implements Comparable<Event> {
         }
     }
 
-
-
     /** FIXME: add javadoc comments */
     public static void main(String[] args) {
         System.out.println("\n--Testing Event.java class--");
 
         Date dateZero = new Date();
         Date today = Date.today();
-        System.out.println("today:\t\t\t\t" + today.toString());
-
-        //FIXME: Timeslot is an enum class and cannot be instantiated
-        //Timeslot time = MORNING;      //So how do I use it???
-        //String time = Timeslot.MORNING;
-
-        //FIXME: Location is an enum class and cannot be instantiated
-        //Location location = new Location();
-
+        System.out.println("Today:\t\t" + today.toString());
+        System.out.println("Timeslot:\t" + Timeslot.MORNING);
+        System.out.println("Location:\t" + Location.HLL114);
         Contact cs = new Contact(Department.CS, "cs@rutgers.edu");
-        System.out.println("defaultContact:\t\t" + cs.toString());
-
-        int defaultDuration = 60;
-        System.out.println("defaultDuration:\t" + defaultDuration);
+        System.out.println("Contact:\t" + cs.toString());
+        int duration = 60;
+        System.out.println("Duration:\t" + duration);
 
         System.out.println();
-        Event event1 =  new Event(today, Timeslot.MORNING, Location.HLL114, cs, defaultDuration);
+        Event event1 =  new Event(today, Timeslot.MORNING, Location.HLL114, cs, duration);
         System.out.println(event1.toString());
 
         System.out.println("\n--Test Complete--");

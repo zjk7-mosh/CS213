@@ -242,16 +242,20 @@ public class EventCalendar {
         System.out.println("\n\n--Test Complete--");
     }
 
-    //Add() working good
+    //EventCalendar() working good
+    //find() working good
     //grow() working good
+    //Add() working good
     //remove() working good
     //contains() working good
     //print() working good
-
-    //printByDate() not implemented
-    //printByCampus() not implemented
-    //printByDepartment() not implemented
-    //sort() not implemented
+    //printDate() working good
+    //printLocation() working good
+    //printDepartment() working good
+    //swap() working good
+    //sortDate() working good
+    //sortLocation() working good
+    //sortDepartment() working good
 
 
 }

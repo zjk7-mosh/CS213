@@ -10,18 +10,21 @@ public class Contact implements Comparable<Contact>{
     private Department department;
     private String email;
 
+    /** FIXME: add javadoc comments */
     /** A default constructor that creates a new contact. */
     public Contact(){   // Good
         this.department = Department.CS;
         this.email = "cs@rutgers.edu";
     }
 
+    /** FIXME: add javadoc comments */
     /** A parameterized constructor that takes a string in a form of "mm/dd/yyyy". ...*/
     public Contact(Department department, String email){ // Good
         this.department = department;
         this.email = email;
     }
 
+    /** FIXME: add javadoc comments */
     public boolean isValid() {
         //FIXME: implement proper code "could not figure it out yet"
         if((this.department == Department.EE && this.email.equals("ee@rutgers.edu")) ||
@@ -34,17 +37,19 @@ public class Contact implements Comparable<Contact>{
         return false;
     }
 
+    /** FIXME: add javadoc comments */
     @Override
-    public String toString(){ // Good
-        return "Contact: " + department.getFullName() + ", " + email;
+    public String toString(){
+        return department.getFullName() + ", " + email;
     }
 
-    //FIXME: compareTo() method for Contact class incomplete
+    /** FIXME: add javadoc comments */
     @Override
     public int compareTo(Contact contact){
         return this.department.getFullName().compareTo(contact.department.getFullName());
     }
 
+    /** FIXME: add javadoc comments */
     public static void main(String[] args){
         System.out.println("\n--Testing Contact.java class--");
 
