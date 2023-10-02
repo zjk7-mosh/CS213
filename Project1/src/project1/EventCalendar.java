@@ -101,53 +101,41 @@ public class EventCalendar {
     public void printByDepartment(){ } //ordered by department
 
 
-    //FIXME: NOT COMPLETE
-    //Still need to test this method
-    private void sortDate(Event[] events) {
-        int n = events.length;
-        boolean swapped;
-        for (int i = 0; i < n - 1; i++) {
-            swapped = false;
-            for (int j = 0; j < n - i - 1; j++) {
-                if (events[j].getDate().compareTo(events[j + 1].getDate()) > 0) {
-                    // Swap people[j] with people[j+1]
-                    Event temp = events[j];
-                    events[j] = events[j + 1];
-                    events[j + 1] = temp;
+    //FIXME: Sorting modes - functionality NOT COMPLETE
+    //Need to implement 3 sorting MODES; by date, location(campus/building/room), and department
+    //current implementation is using 3 separate methods for each mode
+    //another possible implementation is using enums to determine the sorting mode
+        private void sortDate(Event[] events) {
+            int n = events.length;
+            boolean swapped;
+            for (int i = 0; i < n - 1; i++) {
+                swapped = false;
+                for (int j = 0; j < n - i - 1; j++) {
+                    if (events[j].getDate().compareTo(events[j + 1].getDate()) > 0) {
+                        // Swap people[j] with people[j+1]
+                        Event temp = events[j];
+                        events[j] = events[j + 1];
+                        events[j + 1] = temp;
 
-                    swapped = true;
+                        swapped = true;
+                    }
+                }
+                // If no two elements were swapped by inner loop, then break
+                if (!swapped) {
+                    break;
                 }
             }
-            // If no two elements were swapped by inner loop, then break
-            if (!swapped) {
-                break;
-            }
         }
-    }
-    //FIXME: NOT COMPLETE
-    //Still need to test, and implement sorting by location (campus/building/room), and also by department
-    private void sortLocation(Event[] events) {
-        int n = events.length;
-        boolean swapped;
-        for (int i = 0; i < n - 1; i++) {
-            swapped = false;
-            for (int j = 0; j < n - i - 1; j++) {
-                if (events[j].getDate().compareTo(events[j + 1].getDate()) > 0) {
-                    // Swap people[j] with people[j+1]
-                    Event temp = events[j];
-                    events[j] = events[j + 1];
-                    events[j + 1] = temp;
+        //FIXME: NOT COMPLETE
+        //Still need to test, and implement sorting by location (campus/building/room), and also by department
+        private void sortLocation(Event[] events) {
 
-                    swapped = true;
-                }
-            }
-            // If no two elements were swapped by inner loop, then break
-            if (!swapped) {
-                break;
-            }
         }
-    }
+        //FIXME: NOT COMPLETE
+        //Still need to test, and implement sorting by location (campus/building/room), and also by department
+        private void sortDepartment(Event[] events) {
 
+        }
 
 
 
