@@ -46,16 +46,41 @@ public class Event implements Comparable<Event> {
     public String toString() {
         //returns a textual representation of an event in the following format:
         //"[Event Date: 10/21/2023] [Start: 2:00pm] [End: 3:00pm] @HLL114 (Hill Center, Busch) [Contact: Computer Science, cs@rutgers.edu]"
+        String endTime = calculateEndtime();
+
         String dateString = "[Event Date: " + date.getMonth() + "/" + date.getDay() + "/" + date.getYear() + "]";
 
-        //FIXME: End time needs to properly add the duration to starting time
-        String timeString = "[Start: " + startTime.getStartingTime() + "]" + " [End: " + startTime.getStartingTime() + " + " + duration + "]";
-
+        String timeString = "[Start: " + startTime.getStartingTime() + "]" + " [End: " + endTime + "]";
 
         String locationString = "@" + location + " (" + location.getCampus() + ")";
+
         String contactString = "[Contact: " + contact.toString() + "]";
 
         return dateString + " " + timeString + " " + locationString + " " + contactString;
+    }
+
+    private String calculateEndtime(){
+        int startHour = startTime.getHour();
+        int startMinutes = startTime.getMinutes();
+        int endHour = startHour;
+        int endMinutes = startMinutes + duration;
+
+        if (endMinutes == 60){
+            endHour += 1;
+            endMinutes = 00;
+        } else if (endMinutes > 60) {
+            endHour += 1;
+            endMinutes = endMinutes - 60;
+        }
+
+        String endTime = Integer.toString(endHour) + ":" + Integer.toString(endMinutes);
+
+        if (endHour == 10 || endHour == 11){
+            endTime = endTime.concat("am");
+        }else {
+            endTime = endTime.concat("pm");
+        }
+        return endTime;
     }
 
     /** FIXME: add javadoc comments */
@@ -107,9 +132,28 @@ public class Event implements Comparable<Event> {
         System.out.println("Duration:\t" + duration);
 
         System.out.println();
+        Event eventDefault = new Event();
         Event event1 =  new Event(today, Timeslot.MORNING, Location.HLL114, cs, duration);
         System.out.println(event1.toString());
 
+        System.out.println("\nTest equals(): " + event1.equals(event1));
+        System.out.println("Test getDate(): " + event1.getDate());
+        System.out.println("Test getLocation(): " + event1.getLocation());
+        System.out.println("Test getContact(): " + event1.getContact());
+        System.out.println("Test compareTo(): " + event1.compareTo(event1));
+
         System.out.println("\n--Test Complete--");
+
     }
+
+    //Event()               working good
+    //Event(parameters)     working good
+    //equals()              working good
+    //calculateEndTime()    working good
+    //toString()            working good
+    //getDate()             working good
+    //getLocation()         working good
+    //getContact()          working good
+    //compareTo()           working good
+
 }
