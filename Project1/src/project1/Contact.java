@@ -42,7 +42,7 @@ public class Contact implements Comparable<Contact>{
     //FIXME: compareTo() method for Contact class incomplete
     @Override
     public int compareTo(Contact contact){
-        return 1;
+        return this.department.getFullName().compareTo(contact.department.getFullName());
     }
 
     public static void main(String[] args){

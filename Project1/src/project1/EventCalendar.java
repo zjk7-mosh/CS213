@@ -182,16 +182,16 @@ public class EventCalendar {
 
         System.out.println(("--Test EventCalender.java--\n"));
         //public Event(Date date, Timeslot startTime, Location location, Contact contact, int duration)
-        Event event1 = new Event(new Date("10/01/2023"), Timeslot.MORNING, Location.BE_AUD, new Contact(), 60);
-        Event event2 = new Event(new Date("10/02/2023"), Timeslot.MORNING, Location.TIL232, new Contact(), 60);
-        Event event3 = new Event(new Date("10/03/2023"), Timeslot.MORNING, Location.MU302, new Contact(), 60);
-        Event event4 = new Event(new Date("10/04/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
-        Event event5 = new Event(new Date("10/05/2023"), Timeslot.MORNING, Location.HLL114, new Contact(), 60);
-        Event event6 = new Event(new Date("10/06/2023"), Timeslot.MORNING, Location.BE_AUD, new Contact(), 60);
-        Event event7 = new Event(new Date("10/07/2023"), Timeslot.MORNING, Location.ARC103, new Contact(), 60);
-        Event event8 = new Event(new Date("10/08/2023"), Timeslot.MORNING, Location.AB2225, new Contact(), 60);
-        Event event9 = new Event(new Date("10/09/2023"), Timeslot.MORNING, Location.HLL114, new Contact(), 60);
-        Event event10 = new Event(new Date("10/10/2023"), Timeslot.MORNING, Location.TIL232, new Contact(), 60);
+        Event event1 = new Event(new Date("10/01/2023"), Timeslot.MORNING, Location.BE_AUD, new Contact(Department.CS, "cs@rutgers.edu"), 60);
+        Event event2 = new Event(new Date("10/02/2023"), Timeslot.MORNING, Location.TIL232, new Contact(Department.ITI, "iti@rutgers.edu"), 60);
+        Event event3 = new Event(new Date("10/03/2023"), Timeslot.MORNING, Location.MU302, new Contact(Department.EE, "ee@rutgers.edu"), 60);
+        Event event4 = new Event(new Date("10/04/2023"), Timeslot.MORNING, Location.ARC103, new Contact(Department.MATH, "math@rutgers.edu"), 60);
+        Event event5 = new Event(new Date("10/05/2023"), Timeslot.MORNING, Location.HLL114, new Contact(Department.ITI, "iti@rutgers.edu"), 60);
+        Event event6 = new Event(new Date("10/06/2023"), Timeslot.MORNING, Location.BE_AUD, new Contact(Department.CS, "cs@rutgers.edu"), 60);
+        Event event7 = new Event(new Date("10/07/2023"), Timeslot.MORNING, Location.ARC103, new Contact(Department.MATH, "math@rutgers.edu"), 60);
+        Event event8 = new Event(new Date("10/08/2023"), Timeslot.MORNING, Location.AB2225, new Contact(Department.EE, "ee@rutgers.edu"), 60);
+        Event event9 = new Event(new Date("10/09/2023"), Timeslot.MORNING, Location.HLL114, new Contact(Department.CS, "cs@rutgers.edu"), 60);
+        Event event10 = new Event(new Date("10/10/2023"), Timeslot.MORNING, Location.TIL232, new Contact(Department.BAIT, "bait@rutgers.edu"), 60);
 
         EventCalendar calendar = new EventCalendar();
         System.out.println("Size of array: " + calendar.events.length);
