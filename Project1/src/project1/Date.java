@@ -91,6 +91,11 @@ public class Date implements Comparable<Date>{
                 (this.day > ZERO && this.day <= monthMax) &&
                 (this.year > ZERO);
     }
+
+    /**
+     * Helper method for isValid() which returns the max number of days in a month.
+     * @return the max number of days in a month
+     */
         private int monthMax() { //FIXME: does this indentation of a helper method meet codingStandard?
             switch (this.month) {
                 case 1 -> {return DateConstants.JANUARY.getMax();}
@@ -108,6 +113,19 @@ public class Date implements Comparable<Date>{
             }
             return 31;
         }
+/*
+    public boolean isValid() {
+        int max = DateConstants.monthMax(this.month);
+        if(this.month == 2 && leapYear()){
+            max += 1;
+        }
+        return (this.month > ZERO && this.month <= FULLYEAR) &&
+                (this.day > ZERO && this.day <= max) &&
+                (this.year > ZERO);
+    }
+
+ */
+
 
     /**
      * Compares two dates to see if they are equal.
@@ -198,14 +216,82 @@ public class Date implements Comparable<Date>{
      * @param args
      */
     public static void main(String[] args) {
+        //oldTests();
+        testDaysInFeb_Nonleap();
+        testDay_OutOfRange();
+        testMonth_OutOfRange();
+    }
+    /**
+     * Test case #1
+     */
+    private static void testDaysInFeb_Nonleap () {
+        Date date = new Date("2/29/2022"); //test data
+        boolean expectedOutput = false; //define expected output
+        boolean actualOutput = date.isValid(); //call the method to get the actual output
+        System.out.println("**Test case #1: # of days in Feb. in a non-leap year is 28");
+        testResult(date, expectedOutput, actualOutput); //compare the results
+    /*
+        System.out.println("--Test Days In Feb During Non Leap Year--");
+        Date nonLeapYear = new Date(2,29,2023);
+        System.out.println(nonLeapYear.toString());
+        System.out.println();
+     */
+    }
+    /**
+     * Test case #2
+     */
+    private static void testDay_OutOfRange () {
+        Date date = new Date("4/31/2024"); //test data
+        boolean expectedOutput = false; //define expected output
+        boolean actualOutput = date.isValid(); //call the method to get the actual output
+        System.out.println("**Test case #2: # of days in April is 30");
+        testResult(date, expectedOutput, actualOutput); //compare the results
+    }
+    /**
+     * Test case #3
+     */
+    private static void testMonth_OutOfRange () {
+        Date date = new Date("13/30/2022"); //test data
+        boolean expectedOutput = false; //define expected output
+        boolean actualOutput = date.isValid(); //call the method to get the actual output
+        System.out.println("**Test case #3: # of months in a year is 12");
+        testResult(date, expectedOutput, actualOutput); //compare the results
+    }
+    /** Check if a given test case PASS or FAIL ...*/
+    private static void testResult (Date date,boolean expectedOutput, boolean actualOutput){
+        if (expectedOutput == actualOutput){
+            System.out.println(date.toString() + ": PASS");
+        } else {
+            System.out.println(date.toString() + ": FAIL");
+        }
+    }
+    /** Test case #i: unused in testbed main() */
+    private static void testDaysInFeb_Leap () {
+        Date date = new Date("2/29/2022"); //test data
+        boolean expectedOutput = false; //define expected output
+        boolean actualOutput = date.isValid(); //call the method to get the actual output
+        System.out.println("**Test case #i: # of days in Feb. in a non-leap year is 28");
+        testResult(date, expectedOutput, actualOutput); //compare the results
+    /*
+        System.out.println("--Test Days In Feb During Leap Year--");
+        Date leapYear = new Date(2,29,2023);
+        System.out.println(leapYear.toString());
+        System.out.println();
+     */
+    }
+
+    /**
+     * Old tests for Date class.
+     */
+    private static void oldTests() {
         System.out.println("\n--Testing Date.java class--");
-//        Date dateZero = new Date();
-//        Date NineEleven = new Date(9, 11, 2001);
+        //        Date dateZero = new Date();
+        //        Date NineEleven = new Date(9, 11, 2001);
         Date today = Date.today();
-//        Date twoMonthTwoDay = new Date("10/11/2012");
-//        Date twoMonthOneDay = new Date("11/5/2006");
-//        Date oneMonthTwoDay = new Date("7/14/2023");
-//        Date OneMonthOneDay = new Date("3/8/2009");
+        //        Date twoMonthTwoDay = new Date("10/11/2012");
+        //        Date twoMonthOneDay = new Date("11/5/2006");
+        //        Date oneMonthTwoDay = new Date("7/14/2023");
+        //        Date OneMonthOneDay = new Date("3/8/2009");
         Date validTest = new Date("2/29/2024");
         System.out.println("Test isValid():\t\t" + validTest.isValid());             // COMPLETE
         System.out.println("Test compareTo():\t" + validTest.compareTo(today));      // COMPLETE
@@ -216,37 +302,37 @@ public class Date implements Comparable<Date>{
         System.out.println("Test getYear():\t\t" + validTest.getYear());             // COMPLETE
         System.out.println("Test equals():\t\t" + validTest.equals(today));          // COMPLETE
         /** Test case #1 */
-//        testDaysInFeb_Nonleap
-//            Date date = new Date("2/29/2011"); //test data
-//            boolean expectedOutput = false; //define expected output
-//            boolean actualOutput = date.isValid(); //call the method to get the actual output
-//            System.out.println("**Test case #1: # of days in Feb. in a non-leap year is 28");
-//            testResult(date, expectedOutput, actualOutput); //compare the results
+        //        testDaysInFeb_Nonleap
+        //            Date date = new Date("2/29/2011"); //test data
+        //            boolean expectedOutput = false; //define expected output
+        //            boolean actualOutput = date.isValid(); //call the method to get the actual output
+        //            System.out.println("**Test case #1: # of days in Feb. in a non-leap year is 28");
+        //            testResult(date, expectedOutput, actualOutput); //compare the results
 
-//        System.out.println("--Test Days In Feb During Non Leap Year--");
-//        Date nonLeapYear = new Date(2,29,2023);
-//        System.out.println(nonLeapYear.toString());
-//        System.out.println();
-//        }
+        //        System.out.println("--Test Days In Feb During Non Leap Year--");
+        //        Date nonLeapYear = new Date(2,29,2023);
+        //        System.out.println(nonLeapYear.toString());
+        //        System.out.println();
+        //        }
         /** Test case #2 */
-//        private static void testDaysInFeb_Leap () {
+        //        private static void testDaysInFeb_Leap () {
 
-//        System.out.println("--Test Days In Feb During Leap Year--");
-//        Date leapYear = new Date(2,29,2023);
-//        System.out.println(leapYear.toString());
-//        System.out.println();
-//        }
+        //        System.out.println("--Test Days In Feb During Leap Year--");
+        //        Date leapYear = new Date(2,29,2023);
+        //        System.out.println(leapYear.toString());
+        //        System.out.println();
+        //        }
         /** Test case #3 */
-//        private static void testMonth_OutOfRange () {
+        //        private static void testMonth_OutOfRange () {
 
-//        System.out.println("--Test Month Out Of Range--");
-//        Date monthOutOfRange = new Date(13,1,2023);
-//        System.out.println(monthOutOfRange.toString());
-//        System.out.println();
-////        }
+        //        System.out.println("--Test Month Out Of Range--");
+        //        Date monthOutOfRange = new Date(13,1,2023);
+        //        System.out.println(monthOutOfRange.toString());
+        //        System.out.println();
+        ////        }
         /** Check if a given test case PASS or FAIL ...*/
-//        private static void testResult (Date date,boolean expectedQutput, boolean actualOutput){
-//        }
+        //        private static void testResult (Date date,boolean expectedQutput, boolean actualOutput){
+        //        }
         System.out.println("--Test Complete--");
     }
 

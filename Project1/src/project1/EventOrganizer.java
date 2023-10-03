@@ -36,8 +36,10 @@ public class EventOrganizer {
                 int duration = sc.nextInt();
                 //Create a new event object with the given information
                 Event event = new Event(date, startTime, location, contact, duration);
+                //instantiate a new EventCalendar object
+                EventCalendar calendar = new EventCalendar();
                 //Add the event to the calendar
-                Calendar.addEvent(event);
+                calendar.add(event);
             }
 
         }
