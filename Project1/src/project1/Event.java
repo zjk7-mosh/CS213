@@ -130,6 +130,9 @@ public class Event implements Comparable<Event> {
         return contact;
     }
 
+    //FIXME: add javadocs
+    public Timeslot getTimeslot(){ return startTime; }
+
     /**
      * Compares two events to see which one is greater.
      * @param o the object to be compared.

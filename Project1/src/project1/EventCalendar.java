@@ -36,6 +36,18 @@ public class EventCalendar {
         return -1;
     }
 
+    //FIXME: add java docs
+    private int find(Date date, Timeslot startingTime, Location location) {
+        for(int i = 0; i < numEvents; i++){
+            if(events[i].getDate().equals(date) &&
+                    events[i].getTimeslot().equals(startingTime) &&
+                    events[i].getLocation().equals(location)){
+                return i;
+            }
+        }
+        return -1;
+    }
+
     /**
      * increases the capacity of the array by 4
      */
@@ -85,6 +97,20 @@ public class EventCalendar {
         return true;
     }
 
+    //FIXME: add javadocs
+    //R 12/22/2023 MORNING HLL114
+    public boolean remove(Date date, Timeslot startingTime, Location location) {
+        //remove an event from the list
+        int found = find(date, startingTime, location);
+        if(found != -1){
+            for(int i = found; i < numEvents; i++){
+                this.events[i] = events[i + 1];
+            }
+            numEvents -= 1;
+        }
+        return true;
+    }
+
     /**
      * checks if the list contains an event
      * @param event the event to be checked
@@ -93,6 +119,20 @@ public class EventCalendar {
     public boolean contains(Event event) {
         return find(event) != -1;
     }
+
+    //FIXME: add java docs
+    // R 12/22/2023 MORNING HLL114
+    public boolean contains(Date date, Timeslot startingTime, Location location){
+
+        find(date, startingTime, location);
+        return false;
+    }
+
+    //FIXME: add javadocs
+    public boolean isEmpty(){
+        return(numEvents == 0);
+    }
+
 
     /**
      * prints the list of events to System.out.
@@ -200,16 +240,15 @@ public class EventCalendar {
             }
         }
     }
-        //FIXME: check if indenting this helper method follows guidelines
-        /**
-         * helper method for sort methods, which swaps two events in the array
-         * @param a the index of the first event
-         */
-        private void swap(int a){
-            Event temp = events[a];
-            events[a] = events[a + 1];
-            events[a + 1] = temp;
-        }
+    /**
+     * helper method for sort methods, which swaps two events in the array
+     * @param event the index of the first event
+     */
+    private void swap(int event){
+        Event tempEvent = events[event];
+        events[event] = events[event + 1];
+        events[event + 1] = tempEvent;
+    }
 
     /**
      * Testbed main driver method for EventCalendar.java class.
