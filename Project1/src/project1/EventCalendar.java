@@ -124,8 +124,7 @@ public class EventCalendar {
     // R 12/22/2023 MORNING HLL114
     public boolean contains(Date date, Timeslot startingTime, Location location){
 
-        find(date, startingTime, location);
-        return false;
+        return find(date, startingTime, location) != -1;
     }
 
     //FIXME: add javadocs

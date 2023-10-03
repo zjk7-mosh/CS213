@@ -35,21 +35,74 @@ public class EventOrganizer {
                 // A 2/29/2024 afternoon HLL114 CS cs@rutgers.edu 60
                 case "A" -> {
                     Date date = new Date(tokens.nextToken());
-                    Timeslot startTime = Timeslot.valueOf(tokens.nextToken().toUpperCase());
-                    Location location = Location.valueOf(tokens.nextToken().toUpperCase());
-                    Contact contact = new Contact(Department.valueOf(tokens.nextToken().toUpperCase()), tokens.nextToken().toLowerCase());
+                    if(!date.isValid()){
+                        System.out.println(date.toString() + ": Invalid calendar date!");
+                        break;
+                    } else if (date.compareTo(Date.today()) == -1) {
+                        System.out.println(date.toString() + ": Event date must be a future date!");
+                        break;
+                    }
+
+                    String time = tokens.nextToken().toUpperCase();
+                    if(!time.equals("MORNING") && !time.equals("AFTERNOON") && !time.equals("EVENING")){
+                        System.out.println("Invalid time slot!");
+                        break;
+                    }
+                    Timeslot startTime = Timeslot.valueOf(time);
+
+                    String room = tokens.nextToken().toUpperCase();
+                    if(!room.equals("HLL114") && !room.equals("ARC103") &&
+                            !room.equals("BE_AUD") && !room.equals("TIL232") &&
+                            !room.equals("AB2225") && !room.equals("MU302")){
+                        System.out.println("Invalid location!!");
+                        break;
+                    }
+                    Location location = Location.valueOf(room);
+
+                    String department = tokens.nextToken().toUpperCase();
+                    if(!department.equals("CS") && !department.equals("EE") &&
+                            !department.equals("ITI") && !department.equals("MATH") &&
+                            !department.equals("BAIT")){
+                        System.out.println("Invalid contact information!");
+                        break;
+                    }
+                    String email = tokens.nextToken().toLowerCase();
+                    if(!email.equals("cs@rutgers.edu") && !email.equals("ee@rutgers.edu") &&
+                            !email.equals("iti@rutgers.edu") && !email.equals("math@rutgers.edu") &&
+                            !email.equals("bait@rutgers.edu")){
+                        System.out.println("Invalid contact information!");
+                        break;
+                    }
+                    Contact contact = new Contact(Department.valueOf(department), email);
+
+
                     int duration = Integer.parseInt(tokens.nextToken());
+                    if(duration < 30 || duration > 120){
+                        System.out.println("Event duration must be at least 30 minutes and at most 120 minutes");
+                        break;
+                    }
                     Event event = new Event(date, startTime, location, contact, duration);
-                    calendar.add(event);
-                    System.out.println("Event added to the calendar.");
+
+                    if(calendar.contains(date, startTime, location)){
+                        System.out.println("The event is already on the calendar.");
+                    }else{
+                        calendar.add(event);
+                        System.out.println("Event added to the calendar.");
+                    }
+
                 }
                 // R 2/29/2024 afternoon HLL114
                 case "R" -> {
                     Date date = new Date(tokens.nextToken());
                     Timeslot startTime = Timeslot.valueOf(tokens.nextToken().toUpperCase());
-                    Location location = Location.valueOf(tokens.nextToken());
-                    calendar.contains(date, startTime, location);
+                    Location location = Location.valueOf(tokens.nextToken().toUpperCase());
+
+                    if(!calendar.contains(date, startTime, location)){
+                        System.out.println("Cannot remove; event is not in the calendar!");
+                        break;
+                    }
                     calendar.remove(date, startTime, location);
+                    System.out.println("Event has been removed from the calendar!");
                 }
                 //print with the current order in the array.
                 case "P" -> {

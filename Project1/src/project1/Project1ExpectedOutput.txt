@@ -159,5 +159,3 @@ Event added to the calendar.
 * end of event calendar *
 q is an invalid command!
 Event Organizer terminated.
-Project1ExpectedOutput.txt
-Displaying Project1ExpectedOutput.txt.

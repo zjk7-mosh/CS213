@@ -64,5 +64,3 @@ PD
 q
 Q
 Program terminated. You should not process this line.
-project1TestCases.txt
-Displaying project1TestCases.txt.
