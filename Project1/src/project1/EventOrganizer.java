@@ -107,7 +107,9 @@ public class EventOrganizer {
                 //print with the current order in the array.
                 case "P" -> {
                     if(!calendar.isEmpty()) {
+                        System.out.println("* Event calendar *");
                         calendar.print();
+                        System.out.println("* end of event calendar *");
                     } else{
                         System.out.println("Event calendar is empty!");
                     }
@@ -115,7 +117,9 @@ public class EventOrganizer {
                 //print sorted by the event date and timeslot.
                 case "PE" -> {
                     if(!calendar.isEmpty()) {
+                        System.out.println("* Event calendar by event date and start time *");
                         calendar.printDate();
+                        System.out.println("* end of event calendar *");
                     } else{
                         System.out.println("Event calendar is empty!");
                     }
@@ -123,7 +127,9 @@ public class EventOrganizer {
                 //print sorted by campus and building/room.
                 case "PC" -> {
                     if(!calendar.isEmpty()) {
+                        System.out.println("* Event calendar by campus and building *");
                         calendar.printLocation();
+                        System.out.println("* end of event calendar *");
                     } else{
                         System.out.println("Event calendar is empty!");
                     }
@@ -131,7 +137,9 @@ public class EventOrganizer {
                 //print sorted by the department in the contact.
                 case "PD" -> {
                     if(!calendar.isEmpty()) {
+                        System.out.println("* Event calendar by department *");
                         calendar.printDepartment();
+                        System.out.println("* end of event calendar *");
                     } else{
                         System.out.println("Event calendar is empty!");
                     }
