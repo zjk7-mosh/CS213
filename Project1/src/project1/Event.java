@@ -17,7 +17,7 @@ public class Event implements Comparable<Event> {
     private int duration; //in minutes
 
     /**
-     Default constructor for Event class.
+     Test constructor for Event class.
      */
     public Event(){
         this.date = new Date();

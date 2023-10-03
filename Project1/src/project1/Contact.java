@@ -13,6 +13,7 @@ public class Contact implements Comparable<Contact>{
     private Department department;
     private String email;
 
+    //fixme: rm before submit , unneeded
     /**
      * Test constructor for Contact class.
      */

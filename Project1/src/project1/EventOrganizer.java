@@ -15,7 +15,7 @@ public class EventOrganizer {
     /**
      * Default constructor for EventOrganizer class.
      */
-    public void run(){
+    public void run() {
         //A while loop to continuously read the command lines from the console until a “Q” command is entered
         while (true) {
             //Read a command line from the console
@@ -28,14 +28,19 @@ public class EventOrganizer {
             //If the command line is “A”, then add a new event to the calendar
             else if (commandLine.equals("A")) {
                 //Read the event name, start time, and end time from the console
-                String eventName = sc.nextLine();
-                String startTime = sc.nextLine();
-                String endTime = sc.nextLine();
+                Date date = new Date(sc.next());
+                Timeslot startTime = Timeslot.valueOf(sc.next());
+                Location location = Location.valueOf(sc.next());
+                //FIXME: I think Department enum needs to be fixed to be able to read the department name
+                Contact contact = new Contact(Department.valueOf(sc.next()), sc.next());
+                int duration = sc.nextInt();
                 //Create a new event object with the given information
-                Event event = new Event(eventName, startTime, endTime);
+                Event event = new Event(date, startTime, location, contact, duration);
                 //Add the event to the calendar
+                Calendar.addEvent(event);
+            }
 
-
-
+        }
+        System.out.println("Event Organizer terminated");
     }
 }
