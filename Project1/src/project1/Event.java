@@ -159,8 +159,39 @@ public class Event implements Comparable<Event> {
      * @param args
      */
     public static void main(String[] args) {
+        testThreeFieldsEqual();
+        testTwoFieldsEqual();
 
+    }
+    /**
+     * Test case #1
+     */
+    private static void testThreeFieldsEqual () {
+        Event event1 = new Event(new Date("11/11/2023"), Timeslot.AFTERNOON,Location.HLL114,new Contact(),30);
+        Event event2 = new Event(new Date("11/11/2023"), Timeslot.AFTERNOON,Location.HLL114,new Contact(),30);
+        boolean expectedOutput = true; //define expected output
+        boolean actualOutput = event1.equals(event2); //call the method to get the actual output
+        System.out.println("**Test case #1: All 3 fields are same**");
+        testResult(event1, event2, expectedOutput, actualOutput); //compare the results
+    }
+    private static void testTwoFieldsEqual () {
+        Event event1 = new Event(new Date("11/12/2023"), Timeslot.AFTERNOON,Location.HLL114,new Contact(),30);
+        Event event2 = new Event(new Date("11/11/2023"), Timeslot.AFTERNOON,Location.HLL114,new Contact(),30);
+        boolean expectedOutput = false; //define expected output
+        boolean actualOutput = event1.equals(event2); //call the method to get the actual output
+        System.out.println("**Test case #2: only 2 fields are same**");
+        testResult(event1, event2, expectedOutput, actualOutput); //compare the results
+    }
 
+    /** Check if a given test case PASS or FAIL ...*/
+    private static void testResult (Event event1, Event event2, boolean expectedOutput, boolean actualOutput){
+        if (expectedOutput == actualOutput){
+            System.out.println(event1.toString() + "\n" + event2.toString());
+            System.out.println(": PASS");
+        } else {
+            System.out.println(event1.toString() + "\n" + event2.toString());
+            System.out.println(": FAIL");
+        }
     }
 
     /**
